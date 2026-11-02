@@ -36,8 +36,8 @@ body,button,input,textarea{font-family:Inter,ui-sans-serif,system-ui,-apple-syst
 <main class="main shell"><div class="toolbar"><div><div class="section-title" id="resultTitle">Your timetable</div><div class="section-meta" id="dataMeta">Waiting for live data…</div></div><button class="refresh" id="refreshBtn">↻ Refresh data</button></div><div class="status" id="status">Connecting to the timetable…</div><section class="result" id="result"><div class="result-head"><div><div class="roll" id="resultRoll"></div><div class="result-sub" id="resultCount"></div></div><div class="next" id="nextExam"></div></div><div class="cards" id="examCards"></div><div class="calendar-row"><button class="calendar-button" id="calendarBtn" hidden>Save to Calendar</button><button class="image-button" id="imageBtn" hidden>Download image</button><button class="print-button" id="printBtn" hidden>Print</button><span id="calendarHint"></span></div></section><div class="empty" id="emptyState">Enter a roll number above to see your exam schedule.</div></main>
 <footer class="shell"><div>Exam Lookup · alpha</div><div>Client-side only · no account required</div></footer>
 <script>
-const SHEET_CSV = "https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/export?format=csv&gid=1664160122";
-const COURSE_CSV = "https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/export?format=csv&gid=2517561";
+const SHEET_CSV = "https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/edit?gid=199010747#gid=199010747";
+const COURSE_CSV = "https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/edit?gid=2517561#gid=2517561";
 let exams = [];
 let courseRolls = new Map();
 let activeRoll = "";
