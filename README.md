@@ -9,7 +9,7 @@ Search a roll number to find registered courses, exam dates, morning/evening slo
 - Single roll-number search
 - Multi-user search with addable roll-number fields
 - Grouping by exam date, slot, and room
-- Course-wise registration lookup
+- Course-code search for exam dates and times
 - Room allocation support for labels such as `LT001`, `LT101`, and `LT102`
 - Clickable course details showing all courses in the same room
 - Single-user `.ics` calendar export
@@ -21,8 +21,10 @@ Search a roll number to find registered courses, exam dates, morning/evening slo
 
 The portal fetches the published Google Sheets data directly in the browser:
 
-- Timetable and room allocation
-- Course-wise registered roll numbers
+- [Room allocation and course-to-roll matches](https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/edit?gid=903613315#gid=903613315)
+- [Course-wise exam timetable](https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/edit?gid=199010747#gid=199010747)
+
+Some room allocations lack a matching course in the sheet. The portal displays the room and marks the course as unmatched instead of assuming one.
 
 ## Run locally
 

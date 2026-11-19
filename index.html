@@ -28,21 +28,22 @@ body,button,input,textarea{font-family:Inter,ui-sans-serif,system-ui,-apple-syst
 @media(max-width:980px){.shell{width:calc(100% - 36px)}.room-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{font-size:42px}.room-box{grid-template-columns:minmax(0,1fr) 1px 140px}}
 @media(max-width:640px){.shell{width:calc(100% - 24px)}.nav{height:52px;flex-basis:52px}.brand{font-size:16px}.hero{padding:25px 0 18px}.hero h1{font-size:34px}.hero p{font-size:14px;line-height:1.45}.tabs{width:100%;display:grid;grid-template-columns:1fr 1fr}.tab{margin:0;padding:10px 6px;font-size:12px}.lookup{flex-direction:column;width:100%;max-width:none;margin-top:15px}.lookup input{width:100%;height:50px}.lookup button{width:100%;height:42px}.multi-people{max-width:none}.multi-row{width:100%}.multi-roll{height:46px}.add-roll{height:46px;width:46px;flex:0 0 46px}.toolbar{align-items:flex-start;padding:14px 0 9px}.section-title{font-size:15px}.section-meta{font-size:11px}.refresh{height:34px;font-size:11px}.result-head{padding:10px}.roll{font-size:16px}.next{font-size:10px}.day-box{padding:8px}.day-box-head{align-items:flex-start}.day-box-title{font-size:15px}.day-box-sub{font-size:11px}.room-grid{grid-template-columns:1fr}.room-box{grid-template-columns:1fr;padding:9px;gap:0}.room-courses{min-height:0}.room-divider{width:100%;height:1px;min-height:1px;margin:9px 0}.room-meta{display:flex;justify-content:flex-start;align-items:center;gap:12px;transform:none}.room-box-label{font-size:11px}.room-box-slot{font-size:11px}.room-box-people{font-size:12px;text-align:center;margin-top:8px}.roommates{font-size:11px}.course-button{font-size:11px;padding:5px 7px}.calendar-row{padding:5px 0 10px}.calendar-button,.image-button,.print-button{width:100%;min-width:0}.calendar-row #calendarHint{position:static}.room-box .course-button{max-width:100%}}
 @media(max-width:380px){.hero h1{font-size:30px}.hero p{font-size:13px}.brand{font-size:15px}.day-box-title{font-size:14px}.room-box-people{font-size:11px;overflow-wrap:anywhere}}
+
+.source-links{font-size:11px;color:var(--muted);margin-bottom:10px}.source-links a{color:var(--cyan)}.course-note{color:var(--body);font-size:11px;line-height:1.4;margin-top:6px}@media(max-width:640px){.tabs{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
 <header class="nav"><div class="shell" style="display:flex;align-items:center;width:100%"><div class="brand">Exam Lookup</div></div></header>
-<section class="hero"><div class="shell"><div class="eyebrow">Autumn 2026 · Mid-semester examinations</div><h1>Find your exam.</h1><p>Search one roll number or compare a group and see where your exams overlap.</p><div class="tabs" role="tablist"><button class="tab active" id="simpleTab" role="tab" onclick="document.getElementById('simplePanel').hidden=false;document.getElementById('multiPanel').hidden=true;document.getElementById('simpleTab').classList.add('active');document.getElementById('multiTab').classList.remove('active');document.getElementById('resultTitle').textContent='Your timetable'">Single search</button><button class="tab" id="multiTab" role="tab" onclick="document.getElementById('simplePanel').hidden=true;document.getElementById('multiPanel').hidden=false;document.getElementById('simpleTab').classList.remove('active');document.getElementById('multiTab').classList.add('active');document.getElementById('resultTitle').textContent='Group timetable'">Multi-user search</button></div><div class="search-panel" id="simplePanel"><div class="lookup"><input id="rollInput" autocomplete="off" inputmode="text" placeholder="Enter roll number · e.g. 2401MC19" aria-label="Roll number"><button id="searchBtn">Find exams</button></div></div><div class="search-panel" id="multiPanel" hidden><div class="multi-people" id="multiPeople"><div class="multi-row"><input class="multi-roll" inputmode="text" placeholder="Roll number · e.g. 2401MC19" aria-label="Roll number 1"><button class="add-roll" type="button" aria-label="Add another roll number">+</button></div></div><div class="lookup multi-lookup"><button id="multiSearchBtn">Compare group</button></div></div></div></section>
-<main class="main shell"><div class="toolbar"><div><div class="section-title" id="resultTitle">Your timetable</div><div class="section-meta" id="dataMeta">Waiting for live data…</div></div><button class="refresh" id="refreshBtn">↻ Refresh data</button></div><div class="status" id="status">Connecting to the timetable…</div><section class="result" id="result"><div class="result-head"><div><div class="roll" id="resultRoll"></div><div class="result-sub" id="resultCount"></div></div><div class="next" id="nextExam"></div></div><div class="cards" id="examCards"></div><div class="calendar-row"><button class="calendar-button" id="calendarBtn" hidden>Save to Calendar</button><button class="image-button" id="imageBtn" hidden>Download image</button><button class="print-button" id="printBtn" hidden>Print</button><span id="calendarHint"></span></div></section><div class="empty" id="emptyState">Enter a roll number above to see your exam schedule.</div></main>
+<section class="hero"><div class="shell"><div class="eyebrow">Autumn 2026 · End-semester examinations</div><h1>Find your exam.</h1><p>Search by roll number or course, or compare a group’s exam schedule.</p><div class="tabs" role="tablist"><button class="tab active" id="simpleTab" role="tab">Single search</button><button class="tab" id="multiTab" role="tab">Multi-user search</button><button class="tab" id="courseTab" role="tab">Course search</button></div><div class="search-panel" id="simplePanel"><div class="lookup"><input id="rollInput" autocomplete="off" inputmode="text" placeholder="Enter roll number · e.g. 2401MC19" aria-label="Roll number"><button id="searchBtn">Find exams</button></div></div><div class="search-panel" id="multiPanel" hidden><div class="multi-people" id="multiPeople"><div class="multi-row"><input class="multi-roll" inputmode="text" placeholder="Roll number · e.g. 2401MC19" aria-label="Roll number 1"><button class="add-roll" type="button" aria-label="Add another roll number">+</button></div></div><div class="lookup multi-lookup"><button id="multiSearchBtn">Compare group</button></div></div><div class="search-panel" id="coursePanel" hidden><div class="lookup"><input id="courseInput" autocomplete="off" placeholder="Enter course code · e.g. MA3101" aria-label="Course code"><button id="courseSearchBtn">Find course</button></div></div></div></section>
+<main class="main shell"><div class="toolbar"><div><div class="section-title" id="resultTitle">Your timetable</div><div class="section-meta" id="dataMeta">Waiting for live data…</div></div><button class="refresh" id="refreshBtn">↻ Refresh data</button></div><div class="status" id="status">Connecting to the timetable…</div><div class="source-links"><a href="https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/edit?gid=903613315#gid=903613315" target="_blank" rel="noopener noreferrer">Room allocation sheet</a> · <a href="https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/edit?gid=199010747#gid=199010747" target="_blank" rel="noopener noreferrer">Course timetable sheet</a></div><section class="result" id="result"><div class="result-head"><div><div class="roll" id="resultRoll"></div><div class="result-sub" id="resultCount"></div></div><div class="next" id="nextExam"></div></div><div class="cards" id="examCards"></div><div class="calendar-row"><button class="calendar-button" id="calendarBtn" hidden>Save to Calendar</button><button class="image-button" id="imageBtn" hidden>Download image</button><button class="print-button" id="printBtn" hidden>Print</button><span id="calendarHint"></span></div></section><div class="empty" id="emptyState">Enter a roll number above to see your exam schedule.</div></main>
 <footer class="shell"><div>Exam Lookup · alpha</div><div>Client-side only · no account required</div></footer>
 <script>
-const SHEET_CSV = "https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/edit?gid=199010747#gid=199010747";
-const COURSE_CSV = "https://docs.google.com/spreadsheets/d/13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec/edit?gid=2517561#gid=2517561";
-let exams = [];
-let courseRolls = new Map();
-let activeRoll = "";
-let lastCalendarEvents = [];
-const $ = (id) => document.getElementById(id);
+const SHEET_ID = "13nOOYTJxH2xPSadbZ6hFCNsQ_H_0J0oxJ4kRD7sdtec";
+const SHEET_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=903613315`;
+const COURSE_CSV = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=199010747`;
+let exams = [], courseSchedule = [], activeRoll = "", currentMode = "single", lastCalendarEvents = [];
+const $ = id => document.getElementById(id);
+const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[ch]);
 function csvRows(text){
   const rows=[]; let row=[], value="", quoted=false;
   for(let i=0;i<text.length;i++){
@@ -57,137 +58,136 @@ function csvRows(text){
   return rows;
 }
 function normalizeRoll(value){return value.toUpperCase().replace(/[^A-Z0-9]/g,"")}
-function normalizeCourse(value){return value.toUpperCase().trim().split(/\s+/)[0].split("/")}
+function normalizeCourse(value){return value.toUpperCase().replace(/\s*\([^)]*\)/g,"").trim().split(/\s*\/\s*/)}
 function cleanCourse(value){return value.replace(/\s*\([^)]*\)/g,"").trim()}
 function parseDate(value){const d=new Date(value+"T00:00:00");return Number.isNaN(d.getTime())?null:d}
-function formatDate(value){const d=parseDate(value);return d?new Intl.DateTimeFormat(undefined,{day:"numeric",month:"short",year:"numeric"}).format(d):value}
-function weekday(value){const d=parseDate(value);return d?new Intl.DateTimeFormat(undefined,{weekday:"long"}).format(d):""}
+function formatDate(value){const d=parseDate(value);return d?new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric"}).format(d):value}
+function weekday(value){const d=parseDate(value);return d?new Intl.DateTimeFormat("en-IN",{weekday:"long"}).format(d):""}
 function loadCourseRows(text){
-  const map=new Map();
-  for(const row of csvRows(text).slice(1)){
-    const [course="",rolls=""] = row;
-    if(!course||!rolls)continue;
-    const normalized=normalizeCourse(course)[0];
-    const set=map.get(normalized)||new Set();
-    rolls.split(";").map(normalizeRoll).filter(Boolean).forEach(roll=>set.add(roll));
-    map.set(normalized,set);
-  }
-  return map;
-}
-function registeredCourses(courses, roll){
-  return courses.filter(course=>normalizeCourse(course).some(code=>courseRolls.get(code)?.has(roll)));
-}
-function loadRows(text){
-  const rows=csvRows(text).slice(1); const result=[];
-  for(const row of rows){
-    const [date="",slot="",room="",courses="",rolls=""] = row;
-    if(!date||!rolls)continue;
-    const courseList=courses.split(",").map(x=>x.trim()).filter(Boolean);
-    rolls.split(",").map(normalizeRoll).filter(Boolean).forEach(roll=>result.push({roll,date,slot,room,courses:courseList}));
+  const rows=csvRows(text), result=[];
+  for(const row of rows.slice(1)){
+    const match=(row[0]||"").match(/\b(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})\b/i);
+    if(!match)continue;
+    const month=["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"].indexOf(match[2].toLowerCase())+1;
+    const date=`${match[3]}-${String(month).padStart(2,"0")}-${match[1].padStart(2,"0")}`;
+    ["Morning","Evening"].forEach((slot,i)=>{
+      for(const course of (row[i+1]||"").split(",").map(x=>x.trim()).filter(Boolean)){
+        if(!/^[A-Z]{2,}\d/i.test(course))continue;
+        result.push({date,slot,course});
+      }
+    });
   }
   return result;
 }
+function loadRows(text){
+  const result=[];
+  for(const row of csvRows(text).slice(1)){
+    const [date="",slot="",room="",courses="",rolls=""]=row;
+    if(!date||!rolls)continue;
+    const courseList=courses.split(",").map(cleanCourse).filter(Boolean), matched=new Map();
+    for(let i=5;i+1<row.length;i+=2){
+      const course=cleanCourse(row[i]||"");if(!course)continue;
+      (row[i+1]||"").split(",").map(normalizeRoll).filter(Boolean).forEach(roll=>{
+        const set=matched.get(roll)||new Set();set.add(course);matched.set(roll,set);
+      });
+    }
+    rolls.split(",").map(normalizeRoll).filter(Boolean).forEach(roll=>result.push({roll,date,slot,room,courses:courseList,matched:matched.get(roll)||new Set()}));
+  }
+  return result;
+}
+function sortEvents(a,b){return a.date.localeCompare(b.date)||((a.slot==="Morning"?0:1)-(b.slot==="Morning"?0:1))||a.room?.localeCompare(b.room||"")||0}
 async function fetchData(){
   $("status").className="status";$("status").textContent="Refreshing live timetable…";
   try{
-    const [timetableResponse,courseResponse]=await Promise.all([
-      fetch(SHEET_CSV,{cache:"no-store"}),
-      fetch(COURSE_CSV,{cache:"no-store"})
-    ]);
-    if(!timetableResponse.ok||!courseResponse.ok)throw new Error("The sheet could not be reached");
-    const [timetableText,courseText]=await Promise.all([timetableResponse.text(),courseResponse.text()]);
-    exams=loadRows(timetableText);courseRolls=loadCourseRows(courseText);
-    $("dataMeta").textContent=`${exams.length.toLocaleString()} room-allocation entries loaded`;
+    const responses=await Promise.all([fetch(SHEET_CSV,{cache:"no-store"}),fetch(COURSE_CSV,{cache:"no-store"})]);
+    if(responses.some(response=>!response.ok))throw new Error("Sheet unavailable");
+    const [roomText,courseText]=await Promise.all(responses.map(response=>response.text()));
+    const roomRows=loadRows(roomText), schedule=loadCourseRows(courseText);
+    if(!roomRows.length||!schedule.length)throw new Error("Sheet data is empty or invalid");
+    exams=roomRows;courseSchedule=schedule;
+    $("dataMeta").textContent=`${exams.length.toLocaleString()} room allocations · ${courseSchedule.length.toLocaleString()} course timetable entries`;
     $("status").className="status ok";$("status").textContent=`Updated ${new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}`;
-    const current=normalizeRoll($("rollInput").value);if(current)showResults(current);
-  }catch(error){$("status").className="status error";$("status").textContent="Could not fetch the timetable tabs. Check that the sheet is publicly viewable and try again.";$("dataMeta").textContent="Live data unavailable"}
-}
-function sameRoomCourses(date,slot,room){
-  const names=new Set();
-  exams.filter(x=>x.date===date&&x.slot===slot&&x.room===room).forEach(x=>x.courses.map(cleanCourse).forEach(name=>names.add(name)));
-  return [...names];
+    if(currentMode==="single"&&$("rollInput").value)showResults(normalizeRoll($("rollInput").value));
+    else if(currentMode==="multi"&&readMultiRolls().length)showMultiResults();
+    else if(currentMode==="course"&&$("courseInput").value)showCourseResults();
+  }catch(error){$("status").className="status error";$("status").textContent="Could not fetch both timetable sheets. Check the source links and try again.";$("dataMeta").textContent=exams.length?"Showing previously loaded data":"Live data unavailable"}
 }
 function findEvents(roll){
-  const registered=[...courseRolls.entries()].filter(([,rolls])=>rolls.has(roll)).map(([course])=>course);
-  const groups=new Map();
-  registered.forEach(course=>{
-    exams.filter(x=>x.roll===roll&&x.courses.some(courseDisplay=>normalizeCourse(courseDisplay).includes(course))).forEach(x=>{
-      const roomRow=exams.find(y=>y.roll===roll&&y.date===x.date&&y.slot===x.slot&&y.room);
-      const room=roomRow?.room||x.room||"";
-      const key=`${x.date}|${x.slot}|${room}`;
-      const group=groups.get(key)||{date:x.date,slot:x.slot,room,courses:new Set(),sameRoom:[]};
-      group.courses.add(course);group.sameRoom=sameRoomCourses(x.date,x.slot,room);groups.set(key,group);
-    });
-  });
-  return [...groups.values()].sort((a,b)=>(a.date+a.slot).localeCompare(b.date+b.slot));
+  return exams.filter(x=>x.roll===roll).map(x=>({date:x.date,slot:x.slot,room:x.room,courses:x.matched,sameRoom:x.courses})).sort(sortEvents);
 }
-function showRoomCourses(button,event){
-  event.stopPropagation();
-  const target=document.getElementById(button.dataset.target);
-  if(!target)return;
-  document.querySelectorAll(".roommates").forEach(el=>{if(el!==target)el.hidden=true});
-  target.hidden=!target.hidden;
-}
-function showResults(roll){
-  const matches=findEvents(roll);
-  $("emptyState").style.display=matches.length?"none":"block";$("result").classList.toggle("visible",matches.length>0);
-  if(!matches.length){$("emptyState").textContent=exams.length?`No registered exam found for ${roll}. Check the roll number and try again.`:"Enter your roll number above to see your exam schedule.";return}
-  $("resultRoll").textContent=roll;$("resultCount").textContent=`${matches.length} exam${matches.length===1?"":"s"} found`;
-  const upcoming=matches.find(x=>parseDate(x.date)>=new Date(new Date().toDateString()));$("nextExam").textContent=upcoming?`NEXT · ${formatDate(upcoming.date)}`:"SCHEDULE LOADED";
-  $("examCards").innerHTML=matches.map((x,index)=>{const target=`roommates-${index}`;const buttons=[...x.courses].map(course=>`<button class="course-button" data-target="${target}" onclick="showRoomCourses(this,event)">${course}</button>`).join("");const roomText=x.room||"Room pending";const roomList=x.sameRoom.length?x.sameRoom.join(" · "):"Room allocation not listed";return `<article class="exam"><div><div class="date">${formatDate(x.date)}</div><div class="day">${weekday(x.date)} · ${x.slot||"Slot not listed"}</div></div><div class="course-buttons">${buttons||"<span class=\"course-missing\">Course registration not listed</span>"}<div class="roommates" id="${target}" hidden>Courses in this room — ${roomList}</div></div><div class="room"><span class="room-label">Room</span><span class="room-value">${roomText}</span></div></article>`}).join("");
-}
-$("searchBtn").addEventListener("click",()=>showResults(normalizeRoll($("rollInput").value)));
-$("rollInput").addEventListener("keydown",e=>{if(e.key==="Enter")showResults(normalizeRoll(e.target.value))});
-$("refreshBtn").addEventListener("click",fetchData);
 function findMultiGroups(rolls){
   const groups=new Map();
   rolls.forEach(roll=>findEvents(roll).forEach(event=>{
     const key=`${event.date}|${event.slot}|${event.room}`;
-    const group=groups.get(key)||{date:event.date,slot:event.slot,room:event.room,people:new Set(),courses:new Set(),sameRoom:event.sameRoom};
-    group.people.add(roll);[...event.courses].forEach(course=>group.courses.add(course));group.sameRoom=event.sameRoom;groups.set(key,group);
+    const group=groups.get(key)||{date:event.date,slot:event.slot,room:event.room,people:new Set(),courses:new Set(),sameRoom:event.sameRoom,unmatched:new Set()};
+    group.people.add(roll);event.courses.forEach(course=>group.courses.add(course));if(!event.courses.size)group.unmatched.add(roll);groups.set(key,group);
   }));
-  return [...groups.values()].sort((a,b)=>(a.date+a.slot).localeCompare(b.date+b.slot));
+  return [...groups.values()].sort(sortEvents);
+}
+function showRoomCourses(button,event){
+  event.stopPropagation();const target=$(button.dataset.target);if(!target)return;
+  document.querySelectorAll(".roommates").forEach(el=>{if(el!==target)el.hidden=true});target.hidden=!target.hidden;
 }
 function setResultHeader(label,count,matches){
-  $("resultTitle").textContent=label;$("resultRoll").textContent=label;$("resultCount").textContent=count;
+  $("resultTitle").textContent=currentMode==="multi"?"Group timetable":currentMode==="course"?"Course timetable":"Your timetable";
+  $("resultRoll").textContent=label;$("resultCount").textContent=count;
   const upcoming=matches.find(x=>parseDate(x.date)>=new Date(new Date().toDateString()));$("nextExam").textContent=upcoming?`NEXT · ${formatDate(upcoming.date)}`:"SCHEDULE LOADED";
-  $("result").classList.add("visible");$("emptyState").style.display="none";$("calendarBtn").hidden=false;
+  $("result").classList.add("visible");$("emptyState").style.display="none";
 }
-function showResults(roll){
-  activeRoll=roll;const matches=findEvents(roll);lastCalendarEvents=matches;
-  if(!matches.length){$("result").classList.remove("visible");$("calendarBtn").hidden=true;$("emptyState").style.display="block";$("emptyState").textContent=exams.length?`No registered exam found for ${roll}. Check the roll number and try again.`:"Enter a roll number above to see your exam schedule.";return}
-  setResultHeader(roll,`${matches.length} exam${matches.length===1?"":"s"} found`,matches);
-  $("examCards").innerHTML=matches.map((x,index)=>{const target=`roommates-${index}`;const buttons=[...x.courses].map(course=>`<button class="course-button" data-target="${target}" onclick="showRoomCourses(this,event)">${course}</button>`).join("");const roomList=x.sameRoom.length?x.sameRoom.join(" · "):"Room allocation not listed";return `<article class="exam"><div><div class="date">${formatDate(x.date)}</div><div class="day">${weekday(x.date)} · ${x.slot||"Slot not listed"}</div></div><div class="course-buttons">${buttons||"<span class=\"course-missing\">Course registration not listed</span>"}<div class="roommates" id="${target}" hidden>Courses in this room — ${roomList}</div></div><div class="room"><span class="room-label">Room</span><span class="room-value">${x.room||"Room pending"}</span></div></article>`}).join("");
-}
-function showMultiResults(){
-  const rolls=[...new Set($("multiInput").value.split(/[\s,;]+/).map(normalizeRoll).filter(Boolean))];const groups=findMultiGroups(rolls);lastCalendarEvents=groups;
-  if(!rolls.length||!groups.length){$("result").classList.remove("visible");$("calendarBtn").hidden=true;$("emptyState").style.display="block";$("emptyState").textContent="Enter one or more valid roll numbers.";return}
-  setResultHeader(`${rolls.length} people`,`${groups.length} shared exam slot${groups.length===1?"":"s"}`,groups);
-  $("examCards").innerHTML=groups.map((x,index)=>{const target=`multi-roommates-${index}`;const buttons=[...x.courses].map(course=>`<button class="course-button" data-target="${target}" onclick="showRoomCourses(this,event)">${course}</button>`).join("");const roomList=x.sameRoom.length?x.sameRoom.join(" · "):"Room allocation not listed";return `<article class="cluster"><div><div class="date">${formatDate(x.date)}</div><div class="day">${weekday(x.date)} · ${x.slot||"Slot not listed"}</div><div class="cluster-people">${[...x.people].join(" · ")}</div></div><div class="course-buttons">${buttons}<div class="roommates" id="${target}" hidden>Courses in this room — ${roomList}</div></div><div class="room"><span class="room-label">Room</span><span class="room-value">${x.room||"Room pending"}</span></div></article>`}).join("");
-}
-function calendarStamp(date,time){return date.replaceAll("-","")+"T"+time+"00"}
-function saveToCalendar(){
-  if(!lastCalendarEvents.length)return;
-  const events=lastCalendarEvents.map((x,index)=>{const evening=x.slot.toLowerCase().includes("even"),start=evening?"153000":"103000",end=evening?"173000":"123000",title=x.courses?[...x.courses].join(", "):"Exam";return `BEGIN:VEVENT\\nUID:exam-${x.date}-${x.slot}-${index}@exam-lookup\\nDTSTAMP:${calendarStamp(new Date().toISOString().slice(0,10),"000000")}\\nDTSTART:${calendarStamp(x.date,start)}\\nDTEND:${calendarStamp(x.date,end)}\\nSUMMARY:${title.replaceAll("\\n"," ")}\\nLOCATION:${x.room||"Exam room"}\\nEND:VEVENT`}).join("\\n");
-  const ics=`BEGIN:VCALENDAR\\nVERSION:2.0\\nPRODID:-//Exam Lookup//EN\\nCALSCALE:GREGORIAN\\n${events}\\nEND:VCALENDAR`;const file=new File([ics],"exam-schedule.ics",{type:"text/calendar"});
-  if(navigator.canShare?.({files:[file]})){navigator.share({title:"Exam schedule",files:[file]}).catch(()=>{});return}
-  const url=URL.createObjectURL(file),link=document.createElement("a");link.href=url;link.download="exam-schedule.ics";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$("calendarHint").textContent="Open the downloaded file with Calendar.";
-}
-function switchMode(mode){const multi=mode==="multi";$("simpleTab").classList.toggle("active",!multi);$("multiTab").classList.toggle("active",multi);$("simplePanel").hidden=multi;$("multiPanel").hidden=!multi;$("result").classList.remove("visible");$("calendarBtn").hidden=true;$("emptyState").style.display="block";$("resultTitle").textContent=multi?"Group timetable":"Your timetable"}
-$("simpleTab").addEventListener("click",()=>switchMode("simple"));$("multiTab").addEventListener("click",()=>switchMode("multi"));$("searchBtn").addEventListener("click",()=>showResults(normalizeRoll($("rollInput").value)||activeRoll));$("rollInput").addEventListener("input",e=>activeRoll=normalizeRoll(e.target.value));$("rollInput").addEventListener("keydown",e=>{if(e.key==="Enter")showResults(normalizeRoll(e.target.value)||activeRoll)});$("multiSearchBtn").addEventListener("click",showMultiResults);$("calendarBtn").addEventListener("click",saveToCalendar);
+function empty(message){$("result").classList.remove("visible");["calendarBtn","imageBtn","printBtn"].forEach(id=>$(id).hidden=true);$("emptyState").style.display="block";$("emptyState").textContent=message;lastCalendarEvents=[]}
 function readMultiRolls(){return [...document.querySelectorAll(".multi-roll")].map(input=>normalizeRoll(input.value)).filter(Boolean)}
 function addRollField(){const wrap=$("multiPeople"),row=document.createElement("div");row.className="multi-row";row.innerHTML='<input class="multi-roll" inputmode="text" placeholder="Another roll number" aria-label="Additional roll number"><button class="add-roll" type="button" aria-label="Add another roll number">+</button>';wrap.appendChild(row);row.querySelector("input").focus()}
 function displayRoom(room){const value=String(room||"pending");return /^LT/i.test(value)?value:`Room ${value}`}
+function slotLabel(slot){return slot==="Morning"?"Morning · 9:30 am–12:30 pm":slot==="Evening"?"Evening · 3:00–6:00 pm":slot||"Slot not listed"}
 function renderDayBoxes(groups,mode){
   const days=new Map();groups.forEach(group=>{const list=days.get(group.date)||[];list.push(group);days.set(group.date,list)});let index=0;
-  return [...days.entries()].map(([date,items])=>{const daySlot=[...new Set(items.map(x=>x.slot).filter(Boolean))].join(" · ");return `<section class="day-box"><div class="day-box-head"><div><div class="day-box-title">${formatDate(date)}</div><div class="day-box-sub">${daySlot||weekday(date)}</div></div></div><div class="room-grid">${items.map(x=>{const target=`roommates-${mode}-${index++}`,visible=mode==="single"?"":" hidden";const buttons=[...x.courses].map(course=>`<button class="course-button" data-target="${target}" onclick="showRoomCourses(this,event)">${course}</button>`).join("");const people=x.people?[...x.people].join(" · "):"";const roomList=x.sameRoom.length?x.sameRoom.join(" · "):"Room allocation not listed";return `<div class="room-box"><div class="room-courses">${buttons||"<span class=\"course-missing\">No registered course</span>"}<div class="roommates" id="${target}"${visible}>Courses in this room — ${roomList}</div></div><div class="room-divider"></div><div class="room-meta"><span class="room-box-label">${displayRoom(x.room)}</span><span class="room-box-slot">${x.slot||"Slot not listed"}</span></div>${people?`<div class="room-box-people">${people}</div>`:""}</div>`}).join("")}</div></section>`}).join("");
+  return [...days.entries()].map(([date,items])=>`<section class="day-box"><div class="day-box-head"><div><div class="day-box-title">${formatDate(date)}</div><div class="day-box-sub">${weekday(date)}</div></div></div><div class="room-grid">${items.map(x=>{
+    const target=`roommates-${mode}-${index++}`,buttons=[...x.courses].map(course=>`<button class="course-button" data-target="${target}" onclick="showRoomCourses(this,event)">${escapeHtml(course)}</button>`).join("");
+    const people=x.people?[...x.people].map(escapeHtml).join(" · "):"", roomList=x.sameRoom.length?x.sameRoom.map(escapeHtml).join(" · "):"Room allocation not listed";
+    const missing=x.unmatched?.size?`<div class="course-note">Course not matched in source for ${[...x.unmatched].map(escapeHtml).join(", ")}.</div>`:"";
+    return `<div class="room-box"><div class="room-courses">${buttons||(!x.unmatched?.size?'<span class="course-missing">Course not matched in source</span>':"")}${missing}<div class="roommates" id="${target}" ${mode==="single"?"":"hidden"}>Courses in this room — ${roomList}</div></div><div class="room-divider"></div><div class="room-meta"><span class="room-box-label">${escapeHtml(displayRoom(x.room))}</span><span class="room-box-slot">${escapeHtml(slotLabel(x.slot))}</span></div>${people?`<div class="room-box-people">${people}</div>`:""}</div>`;
+  }).join("")}</div></section>`).join("");
 }
-function showResults(roll){activeRoll=roll;const matches=findEvents(roll);lastCalendarEvents=matches;if(!matches.length){$("result").classList.remove("visible");$("calendarBtn").hidden=true;$("imageBtn").hidden=true;$("printBtn").hidden=true;$("emptyState").style.display="block";$("emptyState").textContent=exams.length?`No registered exam found for ${roll}. Check the roll number and try again.`:"Enter a roll number above to see your exam schedule.";return}setResultHeader(roll,`${matches.length} exam${matches.length===1?"":"s"} found`,matches);$("calendarBtn").hidden=false;$("imageBtn").hidden=true;$("printBtn").hidden=true;$("examCards").innerHTML=renderDayBoxes(matches,"single")}
-function showMultiResults(){const rolls=[...new Set(readMultiRolls())],groups=findMultiGroups(rolls);lastCalendarEvents=groups;if(!rolls.length||!groups.length){$("result").classList.remove("visible");$("calendarBtn").hidden=true;$("imageBtn").hidden=true;$("printBtn").hidden=true;$("emptyState").style.display="block";$("emptyState").textContent="Enter one or more valid roll numbers.";return}setResultHeader(`${rolls.length} people`,`${groups.length} shared room slot${groups.length===1?"":"s"}`,groups);$("calendarBtn").hidden=true;$("imageBtn").hidden=false;$("printBtn").hidden=false;$("calendarHint").textContent="";$("examCards").innerHTML=renderDayBoxes(groups,"multi")}
+function showResults(roll){
+  activeRoll=roll;const matches=findEvents(roll);if(!matches.length){empty(exams.length?`No room allocation found for ${roll||"this roll number"}.`:"Enter a roll number above to see your exam schedule.");return}
+  lastCalendarEvents=matches;setResultHeader(roll,`${matches.length} exam slot${matches.length===1?"":"s"} found`,matches);
+  $("calendarBtn").hidden=false;$("imageBtn").hidden=true;$("printBtn").hidden=true;$("calendarHint").textContent="";$("examCards").innerHTML=renderDayBoxes(matches,"single");
+}
+function showMultiResults(){
+  const rolls=[...new Set(readMultiRolls())],groups=findMultiGroups(rolls);if(!rolls.length||!groups.length){empty("No room allocations found. Check the roll numbers and try again.");return}
+  lastCalendarEvents=groups;const missing=rolls.filter(roll=>!exams.some(x=>x.roll===roll));
+  setResultHeader(`${rolls.length} people`,`${groups.length} room slot${groups.length===1?"":"s"}${missing.length?` · No allocation found for ${missing.join(", ")}`:""}`,groups);
+  $("calendarBtn").hidden=true;$("imageBtn").hidden=false;$("printBtn").hidden=false;$("calendarHint").textContent="";$("examCards").innerHTML=renderDayBoxes(groups,"multi");
+}
+function showCourseResults(){
+  const query=$("courseInput").value.trim().toUpperCase().replace(/\s+/g,"");
+  const matches=courseSchedule.filter(x=>normalizeCourse(x.course).includes(query)).sort(sortEvents);
+  if(!query||!matches.length){empty(`No course timetable found for ${query||"this course"}.`);return}
+  lastCalendarEvents=[];setResultHeader(query,`${matches.length} exam slot${matches.length===1?"":"s"} found`,matches);
+  ["calendarBtn","imageBtn","printBtn"].forEach(id=>$(id).hidden=true);$("calendarHint").textContent="";
+  $("examCards").innerHTML=matches.map(x=>`<article class="exam"><div><div class="date">${formatDate(x.date)}</div><div class="day">${weekday(x.date)}</div></div><div class="course">${escapeHtml(x.course)}</div><div class="room">${escapeHtml(slotLabel(x.slot))}</div></article>`).join("");
+}
+function calendarStamp(date,time){return date.replaceAll("-","")+"T"+time}
+function saveToCalendar(){
+  if(!lastCalendarEvents.length)return;
+  const escapeIcs=value=>String(value).replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;");
+  const stamp=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+  const events=lastCalendarEvents.map((x,index)=>{const evening=x.slot.toLowerCase().includes("even"),start=evening?"150000":"093000",end=evening?"180000":"123000",title=x.courses.size?[...x.courses].join(", "):"Exam (course not matched)";return ["BEGIN:VEVENT",`UID:exam-${x.date}-${x.slot}-${index}@exam-lookup`,`DTSTAMP:${stamp}`,`DTSTART;TZID=Asia/Kolkata:${calendarStamp(x.date,start)}`,`DTEND;TZID=Asia/Kolkata:${calendarStamp(x.date,end)}`,`SUMMARY:${escapeIcs(title)}`,`LOCATION:${escapeIcs(x.room||"Exam room")}`,"END:VEVENT"].join("\r\n")}).join("\r\n");
+  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Exam Lookup//EN","CALSCALE:GREGORIAN",events,"END:VCALENDAR",""].join("\r\n"),file=new File([ics],"exam-schedule.ics",{type:"text/calendar"});
+  if(navigator.canShare?.({files:[file]})){navigator.share({title:"Exam schedule",files:[file]}).catch(()=>{});return}
+  const url=URL.createObjectURL(file),link=document.createElement("a");link.href=url;link.download="exam-schedule.ics";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$("calendarHint").textContent="Open the downloaded file with Calendar.";
+}
+function switchMode(mode){
+  currentMode=mode;["simple","multi","course"].forEach(name=>{const active=(name==="simple"?"single":name)===mode;$(name+"Tab").classList.toggle("active",active);$(name+"Panel").hidden=!active});
+  empty(mode==="course"?"Enter a course code to see its exam date.":"Enter a roll number above to see your exam schedule.");$("resultTitle").textContent=mode==="multi"?"Group timetable":mode==="course"?"Course timetable":"Your timetable";
+}
+$("simpleTab").addEventListener("click",()=>switchMode("single"));$("multiTab").addEventListener("click",()=>switchMode("multi"));$("courseTab").addEventListener("click",()=>switchMode("course"));
+$("searchBtn").addEventListener("click",()=>showResults(normalizeRoll($("rollInput").value)));$("rollInput").addEventListener("input",e=>activeRoll=normalizeRoll(e.target.value));$("rollInput").addEventListener("keydown",e=>{if(e.key==="Enter")showResults(normalizeRoll(e.target.value))});
+$("multiSearchBtn").addEventListener("click",showMultiResults);$("courseSearchBtn").addEventListener("click",showCourseResults);$("courseInput").addEventListener("keydown",e=>{if(e.key==="Enter")showCourseResults()});$("calendarBtn").addEventListener("click",saveToCalendar);$("refreshBtn").addEventListener("click",fetchData);
 function downloadMultiImage(){
   const groups=lastCalendarEvents;if(!groups.length)return;const days=new Map();groups.forEach(x=>{const list=days.get(x.date)||[];list.push(x);days.set(x.date,list)});const width=1800,pad=42,gap=18,dayWidth=(width-pad*2-gap)/2,line=20,dayHeights=[...days.values()].map(items=>110+Math.ceil(items.length/2)*150),height=pad+dayHeights.reduce((a,b)=>a+b,0)+gap*(days.size-1)+pad,canvas=document.createElement("canvas");canvas.width=width;canvas.height=height;const ctx=canvas.getContext("2d");ctx.fillStyle="#0f0f0f";ctx.fillRect(0,0,width,height);ctx.fillStyle="#ffffff";ctx.font="600 30px Inter,Arial,sans-serif";ctx.fillText("Exam Lookup · Group timetable",pad,36);let y=pad+38;
   function wrap(text,x,top,maxWidth,font,color){ctx.font=font;ctx.fillStyle=color;const words=String(text).split(" ");let current="",yy=top;for(const word of words){const next=current?current+" "+word:word;if(ctx.measureText(next).width>maxWidth&&current){ctx.fillText(current,x,yy);current=word;yy+=line}else current=next}if(current)ctx.fillText(current,x,yy);return yy+line}
-  let dayIndex=0;for(const [date,items] of days){const dayHeight=dayHeights[dayIndex++],col=dayIndex%2===1?0:1,x=pad+col*(dayWidth+gap);if(col===0&&dayIndex>1)y+=dayHeights[dayIndex-2]+gap;ctx.fillStyle="#181818";ctx.fillRect(x,y,dayWidth,dayHeight);ctx.fillStyle="#ffffff";ctx.font="600 21px Inter,Arial,sans-serif";ctx.fillText(formatDate(date),x+18,y+30);ctx.fillStyle="#b6c5c8";ctx.font="14px Inter,Arial,sans-serif";ctx.fillText([...new Set(items.map(v=>v.slot).filter(Boolean))].join(" · "),x+18,y+53);items.forEach((item,i)=>{const cx=x+14+(i%2)*((dayWidth-42)/2+14),cy=y+72+Math.floor(i/2)*150,cw=(dayWidth-42)/2;ctx.fillStyle="#202020";ctx.fillRect(cx,cy,cw,130);ctx.fillStyle="#0007cd";ctx.fillRect(cx,cy,5,130);const roomX=cx+cw-108;ctx.fillStyle="#0007cd";ctx.fillRect(roomX,cy+12,94,25);ctx.fillStyle="#ffffff";ctx.font="600 13px Inter,Arial,sans-serif";ctx.fillText(displayRoom(item.room),roomX+8,cy+29);ctx.fillStyle="#ffffff";ctx.font="600 13px Inter,Arial,sans-serif";wrap([...item.courses].join(" · "),cx+16,cy+28,cw-140,"600 13px Inter,Arial,sans-serif","#ffffff");ctx.strokeStyle="#444";ctx.beginPath();ctx.moveTo(roomX-12,cy+12);ctx.lineTo(roomX-12,cy+72);ctx.stroke();ctx.fillStyle="#d4d4d4";ctx.font="13px Inter,Arial,sans-serif";ctx.fillText(item.slot||"",roomX,cy+58);const people=item.people?[...item.people].join(" · "):"";if(people)wrap(people,cx+16,cy+105,cw-32,"600 12px Inter,Arial,sans-serif","#ffffff")})}
+  let dayIndex=0;for(const [date,items] of days){const dayHeight=dayHeights[dayIndex++],col=dayIndex%2===1?0:1,x=pad+col*(dayWidth+gap);if(col===0&&dayIndex>1)y+=dayHeights[dayIndex-2]+gap;ctx.fillStyle="#181818";ctx.fillRect(x,y,dayWidth,dayHeight);ctx.fillStyle="#ffffff";ctx.font="600 21px Inter,Arial,sans-serif";ctx.fillText(formatDate(date),x+18,y+30);ctx.fillStyle="#b6c5c8";ctx.font="14px Inter,Arial,sans-serif";ctx.fillText([...new Set(items.map(v=>v.slot).filter(Boolean))].join(" · "),x+18,y+53);items.forEach((item,i)=>{const cx=x+14+(i%2)*((dayWidth-42)/2+14),cy=y+72+Math.floor(i/2)*150,cw=(dayWidth-42)/2;ctx.fillStyle="#202020";ctx.fillRect(cx,cy,cw,130);ctx.fillStyle="#0007cd";ctx.fillRect(cx,cy,5,130);const roomX=cx+cw-108;ctx.fillStyle="#0007cd";ctx.fillRect(roomX,cy+12,94,25);ctx.fillStyle="#ffffff";ctx.font="600 13px Inter,Arial,sans-serif";ctx.fillText(displayRoom(item.room),roomX+8,cy+29);ctx.fillStyle="#ffffff";ctx.font="600 13px Inter,Arial,sans-serif";wrap([...item.courses].join(" · ")||(item.unmatched?.size?"Course not matched in source":""),cx+16,cy+28,cw-140,"600 13px Inter,Arial,sans-serif","#ffffff");ctx.strokeStyle="#444";ctx.beginPath();ctx.moveTo(roomX-12,cy+12);ctx.lineTo(roomX-12,cy+72);ctx.stroke();ctx.fillStyle="#d4d4d4";ctx.font="13px Inter,Arial,sans-serif";ctx.fillText(item.slot||"",roomX,cy+58);const people=item.people?[...item.people].join(" · "):"";if(people)wrap(people,cx+16,cy+105,cw-32,"600 12px Inter,Arial,sans-serif","#ffffff")})}
   const link=document.createElement("a");link.download="exam-group-schedule.png";link.href=canvas.toDataURL("image/png");link.click();
 }
 function printMultiResults(){window.print()}
